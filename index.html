@@ -510,16 +510,17 @@
                 displays.emergencyContact.innerText = inputs.emergencyContact.value || 'CONTACT NUMBER';
                 
                 if (qrcode) {
-                    const hiddenData = {
-                        philHealth: inputs.philHealth.value,
-                        sss: inputs.sss.value,
-                        tin: inputs.tin.value,
-                        pagIbig: inputs.pagIbig.value,
-                        email: inputs.email.value,
-                        birthday: inputs.birthday.value
-                    };
+                    const qrText = [
+                        `PhilHealth: ${inputs.philHealth.value || 'N/A'}`,
+                        `SSS: ${inputs.sss.value || 'N/A'}`,
+                        `TIN: ${inputs.tin.value || 'N/A'}`,
+                        `PAG-IBIG: ${inputs.pagIbig.value || 'N/A'}`,
+                        `Email: ${inputs.email.value || 'N/A'}`,
+                        `Birthday: ${inputs.birthday.value || 'N/A'}`
+                    ].join('\n');
+                    
                     qrcode.clear();
-                    qrcode.makeCode(JSON.stringify(hiddenData));
+                    qrcode.makeCode(qrText);
                 }
             }
 
@@ -573,6 +574,7 @@
                     pdf.save(`ID_${inputs.fullName.value || 'User'}.pdf`);
 
                     if (supabase) {
+                        console.log("Attempting to save record to Supabase...");
                         const record = {
                             companyId: inputs.companyId.value,
                             fullName: inputs.fullName.value,
@@ -584,14 +586,23 @@
                             sss: inputs.sss.value,
                             tin: inputs.tin.value,
                             pagIbig: inputs.pagIbig.value,
-                            birthday: inputs.birthday.value,
+                            birthday: inputs.birthday.value || null,
                             created_at: new Date().toISOString()
                         };
-                        const { error } = await supabase.from('id_records').insert([record]);
-                        if (error) throw error;
                         
-                        console.log("Successfully saved to Supabase");
+                        const { data, error } = await supabase.from('id_records').insert([record]).select();
+                        
+                        if (error) {
+                            console.error("Supabase Insertion Error:", error);
+                            alert(`Supabase Error: ${error.message}\nCode: ${error.code}\nDetail: ${error.details}`);
+                            throw error;
+                        }
+                        
+                        console.log("Successfully saved to Supabase:", data);
                         await fetchRecords(); // Refresh table
+                    } else {
+                        console.error("Supabase client not initialized!");
+                        alert("Error: Supabase connection could not be established. Check your API keys.");
                     }
                     alert('ID Exported and Saved Successfully!');
                 } catch (error) {
