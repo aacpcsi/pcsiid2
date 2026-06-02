@@ -1,0 +1,291 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.form-section {
+  flex: 1;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.preview-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+h1, h2 {
+  color: #38bdf8;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.section-title {
+  grid-column: span 2;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  color: #38bdf8;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.25rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+}
+
+button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button.primary {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+button.primary:hover {
+  background: #7dd3fc;
+}
+
+/* ID Card Styles */
+.id-card {
+  width: 325px;
+  height: 512px;
+  background: #ffffff;
+  color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.id-card.dark {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #fff;
+}
+
+.card-header {
+  background: #0f172a;
+  color: white;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px solid #38bdf8;
+}
+
+.company-logo {
+  height: 45px;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+.company-name-text {
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.user-photo-placeholder, .user-photo {
+  width: 160px;
+  height: 190px;
+  background: #334155;
+  border: 4px solid #38bdf8;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  object-fit: cover;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.user-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0.25rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #f8fafc;
+}
+
+.user-id {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.user-contact {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.signature-container {
+  height: 50px;
+  margin-top: auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signature-img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.card-footer {
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.badge-employee {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+}
+
+/* Back Card Specifics */
+.emergency-header {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.back-card-body {
+  justify-content: space-between;
+}
+
+.emergency-info {
+  text-align: center;
+}
+
+.emergency-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.emergency-contact {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.qr-container {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-info-back {
+  text-align: center;
+  font-size: 0.65rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.company-name-bold {
+  font-weight: bold;
+  color: #f8fafc;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.company-website {
+  color: #38bdf8;
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.footer-return {
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

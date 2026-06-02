@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCSI ID Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Libraries via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="form-section">
+            <h1>PCSI ID Generator</h1>
+            <div class="form-grid">
+                <div class="section-title">Public Information</div>
+                <div class="form-group">
+                    <label>Company ID Number</label>
+                    <input type="text" id="companyId" placeholder="e.g. PCSI-2024-001">
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="JUAN DELA CRUZ">
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" id="contactNumber" placeholder="+63 9XX XXX XXXX">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="juan@example.com">
+                </div>
+
+                <div class="section-title">Emergency Contact</div>
+                <div class="form-group">
+                    <label>Emergency Name</label>
+                    <input type="text" id="emergencyName" placeholder="Contact Person">
+                </div>
+                <div class="form-group">
+                    <label>Emergency Contact No.</label>
+                    <input type="text" id="emergencyContact" placeholder="+63 9XX XXX XXXX">
+                </div>
+
+                <div class="section-title">Government IDs (QR Code Only)</div>
+                <div class="form-group">
+                    <label>PhilHealth</label>
+                    <input type="text" id="philHealth">
+                </div>
+                <div class="form-group">
+                    <label>SSS</label>
+                    <input type="text" id="sss">
+                </div>
+                <div class="form-group">
+                    <label>TIN</label>
+                    <input type="text" id="tin">
+                </div>
+                <div class="form-group">
+                    <label>PAG-IBIG</label>
+                    <input type="text" id="pagIbig">
+                </div>
+                <div class="form-group">
+                    <label>Birthday</label>
+                    <input type="date" id="birthday">
+                </div>
+
+                <div class="section-title">Assets</div>
+                <div class="form-group">
+                    <label>ID Picture (Portrait)</label>
+                    <input type="file" id="idPictureInput" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Digital Signature</label>
+                    <input type="file" id="signatureInput" accept="image/*">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="generateBtn" class="primary">Generate & Export ID</button>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2>ID Preview</h2>
+            
+            <!-- Front Side -->
+            <div id="frontCard" class="id-card dark">
+                <div class="card-header">
+                    <img src="pcsi-logo.png" alt="PCSI Logo" class="company-logo">
+                    <div class="company-name-text">POWER & CONTROLS SPECIALIST INC.</div>
+                </div>
+                <div class="card-body">
+                    <div id="userPhotoPreview" class="user-photo-placeholder">PHOTO</div>
+                    <div id="displayName" class="user-name">FULL NAME</div>
+                    <div id="displayId" class="user-id">PCSI-0000-000</div>
+                    <div id="displayContact" class="user-contact">+63 9XX XXX XXXX</div>
+                    <div id="signaturePreviewContainer" class="signature-container"></div>
+                </div>
+                <div class="card-footer badge-employee">
+                    EMPLOYEE
+                </div>
+            </div>
+
+            <!-- Back Side -->
+            <div id="backCard" class="id-card dark">
+                <div class="card-header">
+                    <div class="emergency-header">EMERGENCY CONTACT</div>
+                </div>
+                <div class="back-card-body card-body">
+                    <div class="emergency-info">
+                        <div id="displayEmergencyName" class="emergency-name">NAME</div>
+                        <div id="displayEmergencyContact" class="emergency-contact">CONTACT NUMBER</div>
+                    </div>
+
+                    <div id="qrcode" class="qr-container"></div>
+
+                    <div class="company-info-back">
+                        <div class="company-name-bold">PCSI Power & Controls Specialist Inc.</div>
+                        <div>Lot 40-41, B17, Sampaloc Drive</div>
+                        <div>San Miguel 1, Molino 4, Bacoor City Cavite</div>
+                        <div>+63 917.637.6434 / +63 998.962.7195</div>
+                        <div class="company-website">www.pcsi.com.ph</div>
+                    </div>
+                </div>
+                <div class="card-footer footer-return">
+                    IF FOUND, PLEASE RETURN TO THE ADDRESS ABOVE.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
